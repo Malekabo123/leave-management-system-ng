@@ -1,0 +1,237 @@
+<div class="container">
+  <app-card>
+    @if (userInfo) {
+    <div class="cardBody adjust">
+      <div class="avatar-container">
+        <div
+          class="image-container"
+          *ngIf="userInfo.personalInformation.image; else placeholder"
+          [ngClass]="{
+            'box-shadow-avatar': !!userInfo.personalInformation.image
+          }"
+          [ngStyle]="{
+            backgroundImage: 'url(' + userInfo.personalInformation.image + ')'
+          }"
+        ></div>
+
+        <ng-template #placeholder>
+          <div class="image-container avatar-placeholder"></div>
+        </ng-template>
+      </div>
+      <div class="profileInfo">
+        <p>{{ userInfo.isAdmin ? "Admin" : "Employee" }}</p>
+        <h2>{{ userInfo.personalInformation.full_Name }}</h2>
+      </div>
+      <div class="infoContainer">
+        <div>
+          <app-card>
+            <div class="title">Personal Information</div>
+            <div class="infoBody">
+              <div class="item">
+                <p class="grey">Full Name</p>
+                <p class="primary">
+                  {{ userInfo.personalInformation.full_Name }}
+                </p>
+              </div>
+              <div class="item">
+                <p class="grey">Gender</p>
+                <p class="primary">
+                  {{ userInfo.personalInformation.gender | titlecase }}
+                </p>
+              </div>
+              <div class="item">
+                <p class="grey">Date Of Birth</p>
+                <p class="primary">
+                  {{
+                    userInfo.personalInformation.date_Of_Birth.toDate() | date
+                  }}
+                </p>
+              </div>
+              <div class="item">
+                <p class="grey">Marital Status</p>
+                <p class="primary">
+                  {{ userInfo.personalInformation.marital_Status | titlecase }}
+                </p>
+              </div>
+              <div class="item">
+                <p class="grey">Nationality</p>
+                <p class="primary">
+                  {{ userInfo.personalInformation.nationality | titlecase }}
+                </p>
+              </div>
+              <div class="item">
+                <p class="grey">Address</p>
+                <p class="primary">
+                  {{ userInfo.personalInformation.address | titlecase }}
+                </p>
+              </div>
+              <div class="item">
+                <p class="grey">Languages Spoken</p>
+                <p class="primary">
+                  @for (language of
+                  userInfo.personalInformation.languages_Spoken; track language;
+                  let i = $index) { @if (i <
+                  userInfo.personalInformation.languages_Spoken.length - 1) {
+
+                  {{ language }}, } @else {
+                  {{ language }}
+                  } }
+                </p>
+              </div>
+            </div>
+          </app-card>
+
+          <app-card>
+            <div class="title">Contact Info</div>
+            <div class="infoBody">
+              <div class="item">
+                <p class="grey">Personal Email</p>
+                <p class="primary">
+                  {{ userInfo.contactInfo.personal_Email }}
+                </p>
+              </div>
+              <div class="item">
+                <p class="grey">Phone Number</p>
+                <p class="primary">
+                  {{ userInfo.contactInfo.phone_Number }}
+                </p>
+              </div>
+              <div class="item">
+                <p class="grey">Github Profile</p>
+                <p class="primary">
+                  {{ userInfo.contactInfo.github_Profile }}
+                </p>
+              </div>
+              <div class="item">
+                <p class="grey">LinkedIn Profile</p>
+                <p class="primary">
+                  {{ userInfo.contactInfo.linkedin_Profile }}
+                </p>
+              </div>
+            </div>
+          </app-card>
+        </div>
+
+        <div>
+          <app-card>
+            <div class="title">Credentials Details</div>
+            <div class="infoBody">
+              <div class="item">
+                <p class="grey">Company Email</p>
+                <p class="primary">
+                  {{ userInfo.credentials.company_Email }}
+                </p>
+              </div>
+              <div class="item">
+                <p class="grey">Password</p>
+                <p class="primary">
+                  {{ userInfo.credentials.password }}
+                </p>
+              </div>
+            </div>
+          </app-card>
+
+          <app-card>
+            <div class="title">Employment Details</div>
+            <div class="infoBody">
+              <div class="item">
+                <p class="grey">Employee Id</p>
+                <p class="primary">
+                  {{ userInfo.employmentDetails.employee_ID }}
+                </p>
+              </div>
+              <div class="item">
+                <p class="grey">Employee Id</p>
+                <p class="primary">
+                  {{ userInfo.employmentDetails.employment_Status | titlecase }}
+                </p>
+              </div>
+              <div class="item">
+                <p class="grey">Date Of Joining</p>
+                <p class="primary">
+                  {{
+                    userInfo.employmentDetails.date_Of_Joining.toDate() | date
+                  }}
+                </p>
+              </div>
+              <div class="item">
+                <p class="grey">End Of Contract</p>
+                <p class="primary">
+                  {{
+                    userInfo.employmentDetails.end_Of_Contract.toDate() | date
+                  }}
+                </p>
+              </div>
+              <div class="item">
+                <p class="grey">Office Location</p>
+                <p class="primary">
+                  {{ userInfo.employmentDetails.office_Location | titlecase }}
+                </p>
+              </div>
+              <div class="item">
+                <p class="grey">Salary</p>
+                <p class="primary">
+                  {{ userInfo.employmentDetails.salary | currency }}
+                </p>
+              </div>
+            </div>
+          </app-card>
+
+          <app-card>
+            <div class="title">Professional Information</div>
+            <div class="infoBody">
+              <div class="item">
+                <p class="grey">Position</p>
+                <p class="primary">
+                  {{ userInfo.professionalInformation.position | titlecase }}
+                </p>
+              </div>
+              <div class="item">
+                <p class="grey">Department</p>
+                <p class="primary">
+                  {{ userInfo.professionalInformation.department | titlecase }}
+                </p>
+              </div>
+              <div class="item">
+                <p class="grey">Supervisor</p>
+                <p class="primary">
+                  {{ userInfo.professionalInformation.supervisor | titlecase }}
+                </p>
+              </div>
+              <div class="item">
+                <p class="grey">Supervisor</p>
+                <p class="primary">
+                  {{
+                    userInfo.professionalInformation.supervisor_Company_Email
+                  }}
+                </p>
+              </div>
+            </div>
+          </app-card>
+        </div>
+      </div>
+    </div>
+    }@else {
+    <div class="cardBody adjust">
+      <div class="avatar">
+        <img src="blank-profile-picture-973460_1280.png" alt="Name" />
+      </div>
+      <div class="centeredLoading">
+        <span class="loader"></span>
+      </div>
+    </div>
+    }
+  </app-card>
+
+  <app-card>
+    <div class="cardBody">
+      <div class="floatingHeader">Edit Your Profile</div>
+      @if (userInfo) {
+      <app-user-form [userInfo]="userInfo" />} @else {
+      <div class="centeredLoading">
+        <span class="loader"></span>
+      </div>
+      }
+    </div>
+  </app-card>
+</div>

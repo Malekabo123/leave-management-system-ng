@@ -1,0 +1,117 @@
+table {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+table tr {
+  border: 1px solid #ddd;
+  padding: 0.35rem;
+}
+
+table th,
+table td {
+  padding: 0.625rem;
+  text-align: left;
+}
+
+table th {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #9c27b0;
+}
+
+table td {
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  text-transform: capitalize;
+  max-width: 160px;
+  min-width: 115px;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  text-overflow: ellipsis;
+}
+
+table td button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 10px;
+  border-radius: 3px;
+  background-color: #6464f9;
+  color: #fff;
+  transition: all 0.15s ease-in-out;
+  margin: 0;
+}
+
+table td button:hover {
+  background-color: #7d7df1;
+}
+
+table td button span {
+  font-size: 1rem;
+  margin-left: 8px;
+  white-space: nowrap;
+}
+
+table td button i {
+  font-size: 1.1rem;
+}
+
+h2 {
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 900px) {
+  table {
+    border: 0;
+  }
+
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+
+  table tr {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  table td {
+    display: block;
+    text-align: right;
+    max-width: 100%;
+  }
+
+  table td:first-of-type {
+    border-top: 0;
+  }
+
+  table td:last-of-type {
+    min-height: 4rem;
+  }
+
+  table td::before {
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 10px;
+  }
+
+  table td:last-child {
+    border-bottom: 0;
+  }
+
+  table td button {
+    float: right;
+  }
+}

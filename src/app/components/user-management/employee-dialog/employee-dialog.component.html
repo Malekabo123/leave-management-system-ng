@@ -1,0 +1,283 @@
+<form
+  focusInvalidInput
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  #myFormElement
+>
+  <mat-dialog-content>
+    <div class="infoContainer">
+      <h1>Employee Details</h1>
+
+      <div class="header">
+        <h5>
+          <i class="fa fa-user" aria-hidden="true"></i> Personal Information
+        </h5>
+      </div>
+      <!-- Personal Information -->
+      <div formGroupName="personalInformation" class="fieldsContainer">
+        <mat-form-field appearance="outline">
+          <mat-label>Full Name</mat-label>
+          <input matInput type="text" formControlName="full_Name" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Date Of Birth</mat-label>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            formControlName="date_Of_Birth"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Gender</mat-label>
+          <mat-select formControlName="gender">
+            <mat-option value="male">Male</mat-option>
+            <mat-option value="female">Female</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Nationality</mat-label>
+          <mat-select formControlName="nationality">
+            @for (nationality of nationalities; track nationality.value) {
+            <mat-option [value]="nationality.value">{{
+              nationality.viewValue
+            }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Marital Status</mat-label>
+          <mat-select formControlName="marital_Status">
+            <mat-option value="single">Single</mat-option>
+            <mat-option value="married">Married</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Languages Spoken</mat-label>
+          <mat-select formControlName="languages_Spoken" multiple>
+            @for (language of objectKeys(languages); track language) {
+            <mat-option [value]="language">{{
+              languages[language]
+            }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="wholeRow" appearance="outline">
+          <mat-label>Address</mat-label>
+          <input matInput type="text" formControlName="address" required />
+        </mat-form-field>
+      </div>
+
+      <div class="header">
+        <h5>
+          <i class="fa fa-key" aria-hidden="true"></i>
+          Credentials Information
+        </h5>
+      </div>
+
+      <!-- Credentials Information -->
+      <div formGroupName="credentials" class="fieldsContainer">
+        <mat-form-field
+          [class.errMsg]="unmatchedPasswords !== ''"
+          appearance="outline"
+        >
+          <mat-label>Company Email</mat-label>
+          <input
+            matInput
+            type="email"
+            formControlName="company_Email"
+            required
+          />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input matInput type="text" formControlName="password" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Repeat Password</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="repeat_password"
+            required
+          />
+          @if (unmatchedPasswords !== '') {
+          <mat-hint id="allowedDays">{{ unmatchedPasswords }}</mat-hint
+          >}
+        </mat-form-field>
+      </div>
+
+      <div class="header">
+        <h5>
+          <i class="fa fa-building" aria-hidden="true"></i> Employment Details
+        </h5>
+      </div>
+      <!-- Employment Details -->
+      <div formGroupName="employmentDetails" class="fieldsContainer">
+        <mat-form-field appearance="outline">
+          <mat-label>Employee ID</mat-label>
+          <input matInput type="text" formControlName="employee_ID" required />
+        </mat-form-field>
+
+        <mat-form-field
+          appearance="outline"
+          [class.errMsg]="unmatchedEmploymentDates !== ''"
+        >
+          <mat-label>Date Of Joining</mat-label>
+          <input
+            matInput
+            [matDatepickerFilter]="myFilter"
+            [matDatepicker]="picker2"
+            formControlName="date_Of_Joining"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker2"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+
+          @if (unmatchedEmploymentDates) {
+          <mat-hint id="allowedDays">{{ unmatchedEmploymentDates }}</mat-hint
+          >}
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>End of Contract</mat-label>
+          <input
+            matInput
+            [matDatepickerFilter]="myFilter"
+            [matDatepicker]="picker3"
+            formControlName="end_Of_Contract"
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker3"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Employment Status</mat-label>
+          <mat-select formControlName="employment_Status">
+            <mat-option value="full-time">Full Time</mat-option>
+            <mat-option value="part-time">Part Time</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Office Location</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="office_Location"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Salary In $</mat-label>
+          <input matInput type="text" formControlName="salary" required />
+        </mat-form-field>
+      </div>
+
+      <div class="header">
+        <h5>
+          <i class="fa fa-briefcase" aria-hidden="true"></i> Professional
+          Information
+        </h5>
+      </div>
+      <!-- Professional Information -->
+      <div formGroupName="professionalInformation" class="fieldsContainer">
+        <mat-form-field appearance="outline">
+          <mat-label>Position</mat-label>
+          <input matInput type="text" formControlName="position" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Department</mat-label>
+          <input matInput type="text" formControlName="department" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Supervisor</mat-label>
+          <input matInput type="text" formControlName="supervisor" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Supervisor</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="supervisor_Company_Email"
+            required
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="header">
+        <h5>
+          <i class="fa fa-address-book" aria-hidden="true"></i> Contact
+          Information
+        </h5>
+      </div>
+      <!-- Contact Information -->
+      <div formGroupName="contactInfo" class="fieldsContainer">
+        <mat-form-field appearance="outline">
+          <mat-label>Personal Email</mat-label>
+          <input
+            matInput
+            type="email"
+            formControlName="personal_Email"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Phone Number</mat-label>
+          <input matInput type="text" formControlName="phone_Number" required />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>LinkedIn Profile</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="linkedin_Profile"
+            required
+          />
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>GitHub Profile</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="github_Profile"
+            required
+          />
+        </mat-form-field>
+      </div>
+      <mat-checkbox formControlName="isAdmin" color="primary"
+        >Is This Employee An Admin?</mat-checkbox
+      >
+    </div>
+
+    @if (toEdit) {
+    <div class="remove">
+      <button type="button" (click)="onRemoveEmployee()">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+        Delete Employee Data
+      </button>
+    </div>
+    }
+  </mat-dialog-content>
+
+  <mat-dialog-actions>
+    <div class="actions">
+      <button class="cancelBtn" (click)="onNoClick()">Close</button>
+      <button class="submitBtn" type="submit">Save</button>
+    </div>
+  </mat-dialog-actions>
+</form>

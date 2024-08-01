@@ -1,0 +1,16 @@
+<div class="container">
+  <app-card>
+    <div class="cardBody">
+      <div class="floatingHeader">My Calendar Of Leaves</div>
+      <app-my-calendar />
+    </div>
+  </app-card>
+
+  @if (isAdmin) {
+  <app-card>
+    <div class="cardBody">
+      <div class="floatingHeader">Employees Calendar Of Leaves</div>
+      <app-employees-calendar />
+    </div> </app-card
+  >}
+</div>

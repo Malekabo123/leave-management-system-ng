@@ -1,0 +1,64 @@
+<mat-dialog-content>
+  <div class="infoContainer">
+    <h1>Leave Details</h1>
+    <div class="row">
+      <div>
+        <strong>Leave Type:</strong>
+        {{ leaveData.leaveType | titlecase }}
+      </div>
+      <div>
+        <strong>Leave Status:</strong>
+        {{ leaveData.leaveStatus | titlecase }}
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <strong>Leave Date:</strong>
+        @if (leaveData.halfDay) {
+        {{ leaveData.leaveDateFrom.toDate() | date }} -
+        {{ leaveData.AM_PM?.toUpperCase() }}}
+
+        <!-- full day -->
+        @else if (+leaveData.leaveDays === 1) {
+        {{ leaveData.leaveDateFrom.toDate() | date }}
+        }
+
+        <!-- multiple days -->
+        @else { From
+        {{ leaveData.leaveDateFrom.toDate() | date }} to
+        {{ leaveData.leaveDateTo.toDate() | date }}
+        }
+      </div>
+      <div>
+        <strong>Leave Days:</strong>
+        {{ leaveData.leaveDays }}
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <strong>Leave Request Date:</strong>
+        {{ leaveData.requestDate.toDate() | date }}
+      </div>
+      <div>
+        <strong>My Description:</strong>
+        {{ leaveData.description | titlecase }}
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <strong>Approver:</strong>
+        {{ leaveData.approver | titlecase }}
+      </div>
+      <div>
+        <strong>Approver Description:</strong>
+        {{ leaveData.approver_description }}
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <div class="actions">
+    <button class="cancelBtn" (click)="onNoClick()">Close</button>
+  </div>
+</mat-dialog-actions>

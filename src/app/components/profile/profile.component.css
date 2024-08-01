@@ -1,0 +1,136 @@
+.adjust {
+  margin-top: 6rem;
+}
+
+.avatar-container {
+  position: relative;
+  width: fit-content;
+  margin: -70px auto 0;
+  border-radius: 50%;
+}
+
+.box-shadow-avatar {
+  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56),
+    0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+.image-container {
+  height: 150px;
+  width: 150px;
+  z-index: 1;
+  border-radius: 50%;
+  background-color: #fff;
+  background-position: center;
+  background-size: cover;
+}
+
+.image-container.avatar-placeholder {
+  background-image: url("../../../../public/blank-profile-picture-973460_1280.png");
+}
+
+.avatar {
+  margin: -70px auto 0;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 0;
+  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56),
+    0 4px 25px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  max-width: 150px;
+  max-height: 150px;
+}
+
+.profileInfo {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+}
+
+p {
+  color: #999;
+  line-height: 1.5rem;
+}
+
+h2 {
+  font-weight: normal;
+  color: #3c4858;
+}
+
+.infoContainer {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: 100%;
+  position: relative;
+}
+
+.infoContainer > div {
+  width: 45%;
+}
+
+.title {
+  width: 100%;
+  background-color: #ebe8e8;
+  padding: 1rem;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  font-weight: bold;
+  text-align: left;
+}
+
+.infoBody {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 1rem;
+}
+
+.item {
+  margin-bottom: 1.3rem;
+}
+
+.grey {
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.primary {
+  font-size: 1.05rem;
+  color: #333;
+  word-break: break-all;
+}
+
+.item:last-of-type {
+  margin-bottom: 0;
+}
+
+@media (max-width: 600px) {
+  .adjust {
+    margin-top: 7rem;
+  }
+
+  .infoContainer > div {
+    width: 100%;
+  }
+
+  .item {
+    display: flex;
+    margin-right: 1.3rem;
+  }
+
+  .grey {
+    margin-bottom: 0;
+    margin-right: 0.8rem;
+    position: relative;
+  }
+
+  .grey::after {
+    content: ":";
+    position: absolute;
+    top: 0;
+    right: -6px;
+    z-index: 20;
+    font-weight: bold;
+  }
+}

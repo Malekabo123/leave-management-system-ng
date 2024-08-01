@@ -1,0 +1,92 @@
+<div class="instructions">
+  <div class="filters">
+    <mat-form-field appearance="outline">
+      <mat-label>Select Year</mat-label>
+      <mat-select [(ngModel)]="selectedYear" (ngModelChange)="onYearChange()">
+        <mat-option *ngFor="let year of years" [value]="year">{{
+          year
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Select Month</mat-label>
+      <mat-select [(ngModel)]="selectedMonth" (ngModelChange)="onMonthChange()">
+        <mat-option *ngFor="let month of months" [value]="month.value">{{
+          month.name
+        }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="colors">
+    <div>
+      <div class="grey"></div>
+      <p>Holiday</p>
+    </div>
+    <div>
+      <div class="yellow"></div>
+      <p>Pending Leave</p>
+    </div>
+    <div>
+      <div class="green"></div>
+      <p>Approved Leave</p>
+    </div>
+    <div>
+      <div class="red"></div>
+      <p>Rejected Leave</p>
+    </div>
+  </div>
+</div>
+
+@if (employeesInfo) {
+<div class="calendarWrapper">
+  <div *ngFor="let employee of employeesInfo" class="employeeCalendar">
+    <h3>{{ employee.personalInformation.full_Name }}</h3>
+    <div class="calendarContainer">
+      <div class="monthTitle">{{ months[selectedMonth].name }}</div>
+      <div class="tableContainer">
+        <table>
+          <thead>
+            <tr>
+              <th>SU</th>
+              <th>MO</th>
+              <th>TU</th>
+              <th>WE</th>
+              <th>TH</th>
+              <th>FR</th>
+              <th>SA</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let week of calendars[employee.id].daysInMonth">
+              <td
+                *ngFor="let day of week"
+                [ngClass]="getDayClass(employee.id, day.date)"
+                [matTooltip]="
+                  showLeave(employee.id, day.date, day.halfDay) | titlecase
+                "
+                (click)="tooltip.show()"
+                #tooltip="matTooltip"
+                matTooltipClass="tooltip-custom"
+                [class.holiday]="day.isHoliday"
+                [class.halfDayAm]="day.halfDay === 'am'"
+                [class.halfDayPm]="day.halfDay === 'pm'"
+                [class.leaveDay]="
+                  getDayClass(employee.id, day.date) !== '' && !day.halfDay
+                "
+              >
+                <div *ngIf="day.date">{{ day.date.getDate() }}</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+} @else {
+<span class="loader"></span>
+} @if (employeesInfo && employeesInfo.length === 0) {
+<h2>No Employees Leaves Requested Yet</h2>
+}

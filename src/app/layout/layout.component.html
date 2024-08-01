@@ -1,0 +1,23 @@
+<div class="layout-container">
+  <app-sidebar></app-sidebar>
+  <div class="content">
+    <header>
+      <button (click)="toggleSidebar(false)">
+        <i class="material-icons">menu</i>
+      </button>
+      <div class="name">
+        @if (name) {
+        <p>{{ name }}</p>
+        }
+      </div>
+    </header>
+    <router-outlet></router-outlet>
+    <div
+      [ngClass]="{
+        modal: !isCollapsed,
+        visible: true
+      }"
+      (click)="toggleSidebar(true)"
+    ></div>
+  </div>
+</div>

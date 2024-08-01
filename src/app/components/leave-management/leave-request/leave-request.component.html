@@ -1,0 +1,106 @@
+@if (myLeaves){
+<form
+  focusInvalidInput
+  [formGroup]="isHalfDay ? halfDayForm : form"
+  (ngSubmit)="onSubmit()"
+  #myFormElement
+  [class.haldDayForm]="isHalfDay"
+>
+  <mat-form-field appearance="outline">
+    <mat-label>Leave Type</mat-label>
+    <mat-select formControlName="leaveType">
+      @for (type of leaveTypes; track type) {
+      <mat-option [disabled]="disableOption(type)" [value]="type">{{
+        type | titlecase
+      }}</mat-option
+      >}
+    </mat-select>
+
+    <!-- full day leave -->
+    @if (form.controls['leaveType'].value && !isHalfDay ) {
+    <mat-hint id="allowedDays"
+      >{{ getAllowedDays(false) }} days allowed</mat-hint
+    >}
+
+    <!-- half day leave -->
+    @if (halfDayForm.controls['leaveType'].value && isHalfDay) {
+    <mat-hint id="allowedDays"
+      >{{ getAllowedDays(true) }} days allowed</mat-hint
+    >
+    }
+  </mat-form-field>
+
+  @if (!isHalfDay) {
+  <mat-form-field appearance="outline">
+    <mat-label>Date Range</mat-label>
+    <mat-date-range-input [rangePicker]="date" [dateFilter]="myFilter">
+      <input
+        matStartDate
+        formControlName="leaveDateFrom"
+        placeholder="Start date"
+      />
+      <input matEndDate formControlName="leaveDateTo" placeholder="End date" />
+    </mat-date-range-input>
+    <mat-datepicker-toggle matIconSuffix [for]="date"></mat-datepicker-toggle>
+    <mat-date-range-picker #date></mat-date-range-picker> </mat-form-field
+  >}
+
+  <!-- half day -->
+  @if (isHalfDay) {
+  <mat-form-field appearance="outline">
+    <mat-label>Date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker2"
+      [matDatepickerFilter]="myFilter"
+      formControlName="leaveDate"
+    />
+    <mat-datepicker-toggle
+      matIconSuffix
+      [for]="picker2"
+    ></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>AM/PM</mat-label>
+    <mat-select formControlName="AM_PM">
+      <mat-option value="am">AM</mat-option>
+      <mat-option value="pm">PM</mat-option>
+    </mat-select> </mat-form-field
+  >}
+
+  <mat-form-field appearance="outline">
+    <mat-label>Description</mat-label>
+    <input
+      matInput
+      type="text"
+      id="description"
+      name="description"
+      formControlName="description"
+      required
+    />
+  </mat-form-field>
+
+  <mat-checkbox (click)="toggleCheckbox()" color="primary"
+    >Request half day leave</mat-checkbox
+  >
+
+  @if (notAllowedDates && notAllowedDates.length > 0) {
+  <div class="warning">
+    <p>
+      These dates can't be selected because they are used in a different leave
+      request:
+    </p>
+    @for (date of notAllowedDates; track date; let i = $index) {
+    <span>{{ date }}@if (i < notAllowedDates.length - 1) {, }</span>
+    }
+  </div>
+  }
+
+  <div class="actions">
+    <button class="cancelBtn" (click)="onClose()">Discard</button>
+    <button class="saveBtn" type="submit">Save</button>
+  </div>
+</form>
+}

@@ -1,0 +1,70 @@
+:host {
+  margin-top: 3rem;
+  width: 100%;
+}
+
+.leaveContainer {
+  padding-bottom: 1rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #ccc;
+}
+
+.leaveContainer:last-of-type {
+  border-bottom: 0;
+}
+
+h2 {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  color: #080808;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  width: max-content;
+  text-align: center;
+  white-space: nowrap;
+  padding-bottom: 13px;
+}
+
+h2:before {
+  background-color: #9c27b0;
+  content: "";
+  display: block;
+  height: 3px;
+  width: 75px;
+  margin-bottom: 10px;
+}
+
+h2:after {
+  background-color: #9c27b0;
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  width: 75px;
+  margin-bottom: 0.25em;
+}
+
+p {
+  text-align: left;
+  padding-left: 1rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: flex-start;
+}
+
+p > i {
+  margin-right: 10px;
+}
+
+@media (max-width: 500px) {
+  h2 {
+    font-size: 23px;
+  }
+}

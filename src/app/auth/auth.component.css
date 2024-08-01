@@ -1,0 +1,94 @@
+/* Container Styles */
+.authContainer {
+  background: url("../../../public/pexels-seven11nash-380769.jpg") no-repeat
+    center center fixed;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+}
+
+.authContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4); /* Dark overlay */
+  backdrop-filter: blur(2px); /* Foggy effect */
+  z-index: 0;
+}
+
+/* Login Box Styles */
+.login-box {
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  z-index: 1;
+}
+
+/* Form Group Styles */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* Label Styles */
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+/* Input Styles */
+input.form-control {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Button Styles */
+button.btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+button.btn:hover {
+  background-color: #0056b3;
+}
+
+/* Error Message Styles */
+.error {
+  margin-top: 5px;
+  color: tomato;
+  font-size: 14px;
+}
+
+.error small {
+  display: block;
+}
+
+.error-message {
+  color: tomato;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 500px) {
+  .login-box {
+    margin-inline: 1rem;
+  }
+}

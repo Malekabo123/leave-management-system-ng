@@ -1,0 +1,19 @@
+<div class="leaves">
+  @for (leave of leaveTypes; track leave.type) {
+  <div class="barContainer">
+    <div class="titles">
+      <p>{{ leave.type | titlecase }}</p>
+      <p>Used {{ leave.usedLeaves }}/{{ leave.allowedDaysByYear }}</p>
+    </div>
+
+    <div
+      [id]="leave.type"
+      role="progressbar"
+      [ngStyle]="{
+        '--value': (leave.usedLeaves / leave.allowedDaysByYear) * 100
+      }"
+    ></div>
+    <p class="counter">{{ leave.usedLeaves }}</p>
+  </div>
+  }
+</div>

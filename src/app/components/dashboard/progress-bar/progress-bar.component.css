@@ -1,0 +1,106 @@
+[role="progressbar"] {
+  --percentage: var(--value);
+  --primary1: rgb(87, 185, 250);
+  --primary2: rgb(255, 155, 40);
+  --primary3: rgb(82, 219, 67);
+  --secondary: rgb(207, 228, 241);
+  width: 80%;
+  aspect-ratio: 2 / 1;
+  border-radius: 50% / 100% 100% 0 0;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin: auto;
+}
+
+[role="progressbar"]::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  mask: radial-gradient(at 50% 100%, white 45%, transparent 45.5%);
+  mask-mode: alpha;
+  -webkit-mask: radial-gradient(at 50% 100%, #0000 45%, #000 45.5%);
+  -webkit-mask-mode: alpha;
+}
+
+#vacation[role="progressbar"]::before {
+  background: conic-gradient(
+    from 0.75turn at 50% 100%,
+    var(--primary1) calc(var(--percentage) * 1% / 2),
+    var(--secondary) calc(var(--percentage) * 1% / 2 + 0.1%)
+  );
+}
+
+#sick[role="progressbar"]::before {
+  background: conic-gradient(
+    from 0.75turn at 50% 100%,
+    var(--primary2) calc(var(--percentage) * 1% / 2),
+    var(--secondary) calc(var(--percentage) * 1% / 2 + 0.1%)
+  );
+}
+
+.titles {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.titles > p:first-of-type {
+  font-weight: bold;
+}
+
+.titles > p:last-of-type {
+  color: #999;
+}
+
+.counter {
+  transform: translateY(-80%);
+  font-size: 2.5vw;
+}
+
+@media (max-width: 900px) {
+  :host {
+    margin-top: 3rem;
+  }
+
+  .leaves {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .barContainer {
+    flex: 1 1 0px;
+  }
+
+  .counter {
+    font-size: 4vw;
+  }
+}
+
+@media (max-width: 500px) {
+  .leaves {
+    flex-direction: column;
+  }
+
+  .barContainer {
+    width: 60%;
+  }
+
+  .counter {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .counter {
+    font-size: 1.6rem;
+  }
+}

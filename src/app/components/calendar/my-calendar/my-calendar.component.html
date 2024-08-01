@@ -1,0 +1,74 @@
+<div class="instructions">
+  <mat-form-field appearance="outline">
+    <mat-label>Select Year</mat-label>
+    <mat-select [(ngModel)]="selectedYear" (ngModelChange)="onYearChange()">
+      <mat-option *ngFor="let year of years" [value]="year">{{
+        year
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <div class="colors">
+    <div>
+      <div class="grey"></div>
+      <p>Holiday</p>
+    </div>
+    <div>
+      <div class="yellow"></div>
+      <p>Pending Leave</p>
+    </div>
+    <div>
+      <div class="green"></div>
+      <p>Approved Leave</p>
+    </div>
+    <div>
+      <div class="red"></div>
+      <p>Rejected Leave</p>
+    </div>
+  </div>
+</div>
+
+@if (employeeLeaves) {
+<div class="calendarWrapper">
+  <div *ngFor="let calendar of calendars" class="calendarContainer">
+    <div class="monthTitle">
+      {{ months[calendar.month].name }}
+    </div>
+    <div class="tableContainer">
+      <table>
+        <thead>
+          <tr>
+            <th>SU</th>
+            <th>MO</th>
+            <th>TU</th>
+            <th>WE</th>
+            <th>TH</th>
+            <th>FR</th>
+            <th>SA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let week of calendar.daysInMonth">
+            <td
+              *ngFor="let day of week"
+              [ngClass]="getDayClass(day.date)"
+              [matTooltip]="showLeave(day.date, day.halfDay) | titlecase"
+              (click)="tooltip.show()"
+              #tooltip="matTooltip"
+              matTooltipClass="tooltip-custom"
+              [class.holiday]="day.isHoliday"
+              [class.halfDayAm]="day.halfDay === 'am'"
+              [class.halfDayPm]="day.halfDay === 'pm'"
+              [class.leaveDay]="getDayClass(day.date) !== '' && !day.halfDay"
+            >
+              <div *ngIf="day.date">{{ day.date.getDate() }}</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+} @else {
+<span class="loader"></span>
+}

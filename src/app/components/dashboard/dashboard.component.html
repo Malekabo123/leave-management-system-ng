@@ -1,0 +1,82 @@
+<div class="container dashboardContainer">
+  <div class="dashboardActions">
+    @if (isAdmin) {
+    <app-card>
+      <div class="cardBody">
+        <div class="floatingHeader">Requests Awaiting My Approval</div>
+        <app-pending-requests />
+      </div> </app-card
+    >}
+
+    <!-- analysis -->
+    @if (myLeaves) {
+    <app-card>
+      <div class="cardBody">
+        <div class="floatingHeader">My Leaves Analysis</div>
+        <app-leave-analysis
+          [myLeaves]="myLeaves"
+          [date_of_joining]="date_of_joining"
+          [gender]="gender"
+          [marital_status]="marital_status"
+        />
+      </div> </app-card
+    >}@else {
+    <app-card>
+      <div class="cardBody">
+        <div class="floatingHeader">My Leaves Analysis</div>
+        <div class="centeredLoading">
+          <span class="loader"></span>
+        </div>
+      </div>
+    </app-card>
+    }
+  </div>
+  <div class="dashboardAnalysis">
+    @if (myLeaves) {
+    <app-card>
+      <div id="lessMargin" class="cardBody">
+        <div class="floatingHeader hideBig">MY TIME OF BALANCES</div>
+        <h3 class="hideSmall">MY TIME OF BALANCES</h3>
+        <app-progress-bar
+          [myLeaves]="myLeaves"
+          [date_of_joining]="date_of_joining"
+        />
+      </div> </app-card
+    >}@else {
+    <app-card>
+      <div id="lessMargin" class="cardBody">
+        <div class="floatingHeader hideBig">MY TIME OF BALANCES</div>
+        <h3 class="hideSmall">MY TIME OF BALANCES</h3>
+        <div class="centeredLoading">
+          <span class="loader"></span>
+        </div>
+      </div>
+    </app-card>
+    } @if (supervisorEmail) {
+    <app-card>
+      <div class="cardBody adjust">
+        <div class="floatingHeader hideBig">OUT OF OFFICE</div>
+        <h3 class="hideSmall">OUT OF OFFICE</h3>
+        <div class="instructions">
+          <div class="blue"></div>
+          <div>Leave Day</div>
+        </div>
+        <app-out-of-office [supervisorEmail]="supervisorEmail" />
+      </div> </app-card
+    >}@else {
+    <app-card>
+      <div class="cardBody adjust">
+        <div class="floatingHeader hideBig">OUT OF OFFICE</div>
+        <h3 class="hideSmall">OUT OF OFFICE</h3>
+        <div class="instructions">
+          <div class="blue"></div>
+          <div>Leave Day</div>
+        </div>
+        <div class="centeredLoading">
+          <span class="loader"></span>
+        </div>
+      </div>
+    </app-card>
+    }
+  </div>
+</div>

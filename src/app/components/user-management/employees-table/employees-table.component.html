@@ -1,0 +1,22 @@
+<div class="tableContainer">
+  <button (click)="openAddModal()">
+    Add Employee <i class="fa fa-plus" aria-hidden="true"></i>
+  </button>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Search Employee Details</mat-label>
+    <input matInput type="text" [(ngModel)]="search" />
+  </mat-form-field>
+
+  @if (dataToDisplay) {
+  <app-table
+    [tableHeaders]="tableHeaders"
+    [dataToDisplay]="dataToDisplay"
+    [search]="search"
+    (selectedEmployee)="openEditModal($event)"
+  />}@else {
+  <span class="loader"></span>
+  } @if (dataToDisplay && dataToDisplay.length === 0) {
+  <h2>No Employees Data Yet</h2>
+  }
+</div>

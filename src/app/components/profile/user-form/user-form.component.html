@@ -1,0 +1,144 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  focusInvalidInput
+  #myFormElement
+>
+  @if (!isUploading) {
+  <div class="avatar-container">
+    <div
+      class="image-container"
+      *ngIf="userInfo.personalInformation.image; else placeholder"
+      [ngClass]="{ 'box-shadow-avatar': !!userInfo.personalInformation.image }"
+      [ngStyle]="{
+        backgroundImage: 'url(' + getFileURL() + ')'
+      }"
+    ></div>
+
+    <ng-template #placeholder>
+      <div class="image-container avatar-placeholder"></div>
+    </ng-template>
+
+    <label for="avatar-input-file">
+      <div class="icon-wrapper">
+        <input
+          type="file"
+          id="avatar-input-file"
+          accept="image/*"
+          (change)="onFileChange($event)"
+        />
+        <i class="material-icons">edit</i>
+      </div>
+    </label>
+  </div>
+  }@else {
+  <span class="loader"></span>
+  }
+
+  <div class="besided">
+    <mat-form-field class="inputGroup" appearance="outline">
+      <mat-label>Company Email</mat-label>
+      <input
+        matInput
+        type="email"
+        id="companyEmail"
+        name="companyEmail"
+        formControlName="companyEmail"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field class="inputGroup" appearance="outline">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="text"
+        id="password"
+        name="password"
+        formControlName="password"
+        required
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="besided">
+    <mat-form-field class="inputGroup" appearance="outline">
+      <mat-label>Personal Email</mat-label>
+      <input
+        matInput
+        type="email"
+        id="personalEmail"
+        name="personalEmail"
+        formControlName="personalEmail"
+        required
+      />
+    </mat-form-field>
+
+    <mat-form-field class="inputGroup" appearance="outline">
+      <mat-label>Phone Number</mat-label>
+      <input
+        matInput
+        type="tel"
+        id="phone"
+        name="phone"
+        formControlName="phone"
+        required
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="besided">
+    <mat-form-field class="inputGroup" appearance="outline">
+      <mat-label>Marital Status</mat-label>
+      <mat-select formControlName="maritalStatus">
+        <mat-option value="single">Single</mat-option>
+        <mat-option value="married">Married</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="inputGroup" appearance="outline">
+      <mat-label>Date Of Birth</mat-label>
+      <input matInput [matDatepicker]="picker" formControlName="birthDate" />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div class="inputGroup wholeRow">
+    <mat-form-field appearance="outline">
+      <mat-label>Address</mat-label>
+      <input
+        matInput
+        type="text"
+        id="address"
+        name="address"
+        formControlName="address"
+        required
+      />
+    </mat-form-field>
+  </div>
+
+  <div class="inputGroup wholeRow">
+    <mat-form-field appearance="outline">
+      <mat-label>Languages Spoken</mat-label>
+      <mat-select formControlName="languagesSpoken" multiple>
+        @for (language of objectKeys(languages); track language) {
+        <mat-option [value]="language">{{ languages[language] }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="save">
+    <button type="submit" class="submitBtn">Save</button>
+  </div>
+</form>
+
+<div class="logout">
+  <button (click)="logout()">
+    <i class="fa fa-sign-out" aria-hidden="true"></i> Logout
+  </button>
+</div>

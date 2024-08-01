@@ -1,0 +1,74 @@
+li {
+  margin-bottom: 2rem;
+}
+
+li > div:first-of-type {
+  display: flex;
+  align-items: center;
+}
+
+img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+}
+
+p {
+  text-align: left;
+  font-weight: bold;
+}
+
+.week {
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(87, 185, 250);
+  color: rgb(0, 152, 253);
+  margin: 0.8rem auto 0;
+  width: max-content;
+}
+
+.week > div {
+  border-right: 1px solid rgb(87, 185, 250);
+  padding: 2px 4px;
+  font-size: 1.1vw;
+}
+
+.week > div:last-of-type {
+  border-right: 0;
+}
+
+.week > .leave {
+  background-color: rgb(87, 185, 250);
+  color: #fff;
+  border-right: 1px solid #fff;
+}
+
+.holiday {
+  background-color: #bbb;
+  color: #fff;
+}
+
+.noAbsenceMsg {
+  text-align: center;
+}
+
+@media (max-width: 1000px) {
+  .week > div {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  :host {
+    margin-top: 3rem;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 2rem;
+  }
+}

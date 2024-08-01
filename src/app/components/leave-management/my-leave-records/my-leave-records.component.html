@@ -1,0 +1,49 @@
+@if (dataToDisplay) {
+<table>
+  <thead>
+    <tr>
+      @for (tableHeader of tableHeaders; track tableHeader) {
+      <th scope="col">{{ tableHeader }}</th>
+      }
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (employee of dataToDisplay | leaveFilter:search ; track $index; let i =
+    $index) {
+    <tr>
+      <td data-label="LEAVE">
+        {{ employee.leaveType }}
+      </td>
+      <td data-label="RANGE">
+        {{ employee.range }}
+      </td>
+      <td data-label="DAYS">
+        {{ employee.days }}
+      </td>
+      <td data-label="STATUS">
+        {{ employee.status }}
+      </td>
+      <td data-label="APPROVER">
+        {{ employee.approver ? employee.approver : "___" }}
+      </td>
+      <td data-label="ACTION">
+        <button (click)="onClick(employee.leaveId)">
+          <i class="material-icons">remove_red_eye</i><span>Show Details</span>
+        </button>
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>
+}
+
+<!-- spinner -->
+@else {
+<span class="loader"></span>
+}
+
+<!-- no data -->
+@if (dataToDisplay && dataToDisplay.length === 0) {
+<h2>No Leaves Requested Yet</h2>
+}

@@ -1,0 +1,137 @@
+.infoContainer {
+  color: #222;
+  margin-bottom: 3rem;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+}
+
+h1 {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  color: #fff;
+  padding: 15px 10px;
+  background-color: #b436f4;
+  width: max-content;
+  border-radius: 5px;
+}
+
+ol {
+  list-style: none;
+  counter-reset: my-awesome-counter;
+}
+
+ol li {
+  counter-increment: my-awesome-counter;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+ol li::before {
+  content: counter(my-awesome-counter);
+  font-weight: bold;
+  position: absolute;
+  top: -2px;
+  left: -2.5rem;
+  padding: 3px 10px;
+  background-color: #333;
+  border-radius: 50%;
+  color: #fff;
+}
+
+.row {
+  display: flex;
+  align-items: flex-start;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #e7dede;
+}
+
+.row:last-of-type {
+  border-bottom: 0;
+}
+
+.row > div {
+  width: 50%;
+}
+
+.wholeRow {
+  width: 100%;
+}
+
+form {
+  padding: 1rem;
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+button {
+  padding: 0.7rem 1.4rem;
+  font-weight: bold;
+  border-radius: 25px;
+  font-size: 1rem;
+  transition: all 0.1s ease-in-out;
+}
+
+.submitBtn {
+  background-color: #3b9219;
+  color: #fff;
+  margin-left: 1rem;
+}
+
+.submitBtn:hover {
+  background-color: #141414;
+}
+
+.rejectBtn {
+  background-color: #a70606;
+  color: #fff;
+}
+
+.rejectBtn:hover {
+  background-color: #141414;
+}
+
+.cancelBtn {
+  background-color: #c7c7c7;
+  color: #222;
+}
+
+.cancelBtn:hover {
+  background-color: #141414;
+  color: #fff;
+}
+
+@media (max-width: 800px) {
+  .row {
+    border-bottom: 0;
+    flex-direction: column;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .row > div {
+    width: 100%;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e7dede;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+
+  .actions {
+    padding: 0;
+    padding-bottom: 1rem;
+  }
+
+  button {
+    padding: 11px 14px;
+    font-size: 0.8rem;
+  }
+}

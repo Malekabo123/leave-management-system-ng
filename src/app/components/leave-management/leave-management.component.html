@@ -1,0 +1,97 @@
+<div class="container">
+  <app-card>
+    <div class="cardBody">
+      <div class="floatingHeader">My Leave Records</div>
+      <div class="leavesTableContainer">
+        @if (pendingLeave) { @for (leave of pendingLeave; track leave.id) {
+        <div class="pendingContainer">
+          <div class="pendingRequest">
+            <div class="icon"><i class="material-icons">access_time</i></div>
+            <h3>
+              Your {{ leave.leaveType | titlecase }} Leave Request Is Waiting
+              For Approvement
+            </h3>
+          </div>
+          <div class="leaveBody">
+            <p>
+              <i class="material-icons">calendar_month</i>
+              <strong> Leave Date:</strong>
+              @if (leave.halfDay) {
+              {{ leave.leaveDateFrom.toDate() | date }} -
+              {{ leave.AM_PM?.toUpperCase() }}
+              }
+
+              <!-- full day -->
+              @else if (+leave.leaveDays === 1) {
+              {{ leave.leaveDateFrom.toDate() | date }}
+              }
+
+              <!-- multiple days -->
+              @else{ From
+              {{ leave.leaveDateFrom.toDate() | date }} to
+              {{ leave.leaveDateTo.toDate() | date }}
+              }
+            </p>
+            <p>
+              <i class="material-icons">send</i>
+              <strong> Request Date:</strong>
+              {{ leave.requestDate.toDate() | date }}
+            </p>
+          </div>
+        </div>
+        <div class="cancelRequest">
+          <button (click)="deleteRequest(leave.id)">
+            Cancel Leave Reuest
+            <i class="fa fa-trash trash" aria-hidden="true"></i>
+          </button>
+        </div>
+        }}@else {
+        <span class="loader"></span>
+        }
+
+        <button
+          [ngClass]="{ disabled: foundPending, sendRequest: true }"
+          (click)="openRequestForm()"
+          [disabled]="foundPending"
+        >
+          Send Leave Reuest
+          <i class="fa fa-paper-plane plane" aria-hidden="true"></i>
+        </button>
+
+        @if (isRequestFormShown) {
+        <app-leave-request (isRequestFormShown)="closeRequestForm($event)" />}
+
+        <mat-form-field appearance="outline">
+          <mat-label>Search My Leaves Details</mat-label>
+          <input matInput type="text" [(ngModel)]="search2" />
+        </mat-form-field>
+
+        <app-my-leave-records [search]="search2" />
+      </div>
+    </div>
+  </app-card>
+
+  @if (isAdmin) {
+  <app-card>
+    <div class="cardBody">
+      <div class="floatingHeader">Employees Leave Records</div>
+      <div class="leavesTableContainer">
+        <mat-form-field appearance="outline">
+          <mat-label>Search Employee Details</mat-label>
+          <input matInput type="text" [(ngModel)]="search" />
+        </mat-form-field>
+
+        @if (dataToDisplay) {
+        <app-table
+          [tableHeaders]="tableHeaders"
+          [dataToDisplay]="dataToDisplay"
+          [search]="search"
+          (selectedEmployee)="showAllModal($event)"
+        />}@else {<span class="loader"></span>} @if (dataToDisplay &&
+        dataToDisplay.length === 0) {
+        <h2>No Employees Leaves Requested Yet</h2>
+        }
+      </div>
+    </div> </app-card
+  >}
+</div>

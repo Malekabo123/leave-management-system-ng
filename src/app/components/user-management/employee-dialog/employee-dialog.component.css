@@ -1,0 +1,160 @@
+.infoContainer {
+  color: #222;
+  margin-bottom: 3rem;
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+}
+
+h1 {
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  color: #fff;
+  padding: 15px 10px;
+  background-color: #b436f4;
+  width: max-content;
+  border-radius: 5px;
+}
+
+.header {
+  background-color: #ecf6ff;
+  padding: 1rem;
+  width: 100%;
+  color: #1e88e5;
+  margin-bottom: 2rem;
+  border-radius: 6px;
+}
+
+h5 {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  gap: 10px;
+}
+
+i {
+  font-size: 18px;
+}
+
+.fieldsContainer {
+  display: flex;
+  align-items: flex-start;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+mat-hint {
+  color: tomato;
+}
+
+.fieldsContainer > mat-form-field {
+  width: 30%;
+}
+
+.email {
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+  text-overflow: ellipsis;
+}
+
+.wholeRow {
+  width: 95% !important;
+}
+
+::ng-deep .mdc-label {
+  font-size: 18px;
+  color: #ff4081;
+  font-family: "Poppins", sans-serif;
+}
+
+.errMsg {
+  margin-bottom: 2rem;
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+}
+
+button {
+  padding: 0.7rem 1.4rem;
+  font-weight: bold;
+  border-radius: 25px;
+  font-size: 1rem;
+  transition: all 0.1s ease-in-out;
+}
+
+.remove > button {
+  color: tomato;
+}
+
+.remove > button:hover {
+  background-color: tomato;
+  color: #fff;
+}
+
+.submitBtn {
+  background-color: #6464f9;
+  color: #fff;
+  margin-left: 1rem;
+}
+
+.submitBtn:hover {
+  background-color: #141414;
+}
+
+.cancelBtn {
+  background-color: #c7c7c7;
+  color: #222;
+}
+
+.cancelBtn:hover {
+  background-color: #141414;
+  color: #fff;
+}
+
+@media (max-width: 800px) {
+  .fieldsContainer {
+    border-bottom: 0;
+    align-items: flex-start;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .fieldsContainer > mat-form-field {
+    width: 45%;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .wholeRow {
+    width: 93.333% !important;
+  }
+
+  h1 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .fieldsContainer {
+    flex-direction: column;
+  }
+
+  .fieldsContainer > mat-form-field {
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .wholeRow {
+    width: 100% !important;
+  }
+
+  .errMsg {
+    margin-bottom: 2rem !important;
+  }
+}

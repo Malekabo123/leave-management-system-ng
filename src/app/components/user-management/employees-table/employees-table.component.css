@@ -1,0 +1,40 @@
+:host {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+}
+
+button {
+  width: max-content;
+  padding: 12px 15px;
+  background: #6464f9;
+  color: #fff;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  transition: all 0.15s ease-in-out;
+  float: left;
+}
+
+button:hover {
+  background: #7d7df1;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+i {
+  margin-left: 10px;
+}
+
+h2 {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}

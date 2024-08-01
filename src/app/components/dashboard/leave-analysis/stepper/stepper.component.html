@@ -1,0 +1,37 @@
+<mat-vertical-stepper [linear]="false" #stepper animationDuration="200">
+  @for (leave of leaveType; track $index) {
+  <mat-step completed="false">
+    <ng-template matStepLabel
+      ><strong>
+        @if (leave.halfDay) {
+        {{ leave.leaveDateFrom.toDate() | date }} -
+        {{ leave.AM_PM?.toUpperCase() }}
+        }@else if (+leave.leaveDays === 1) {
+        {{ leave.leaveDateFrom.toDate() | date }}
+        } @else {
+        {{ leave.leaveDateFrom.toDate() | date }} -
+        {{ leave.leaveDateTo.toDate() | date }}
+        }
+      </strong></ng-template
+    >
+    <div class="leaveDetails">
+      <div class="header">
+        <div
+          [ngClass]="{
+            approved: leave.leaveStatus === 'approved',
+            rejected: leave.leaveStatus === 'rejected',
+            pending: leave.leaveStatus === 'pending'
+          }"
+        >
+          {{ leave.leaveStatus | titlecase }}
+        </div>
+        <button (click)="onClick(leave.id)">
+          <i class="material-icons">remove_red_eye</i>
+        </button>
+      </div>
+      <h4>Description: {{ leave.description | titlecase }}</h4>
+    </div>
+  </mat-step>
+
+  }
+</mat-vertical-stepper>

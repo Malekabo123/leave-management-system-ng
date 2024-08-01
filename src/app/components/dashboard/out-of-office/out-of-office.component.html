@@ -1,0 +1,26 @@
+@if (teamMembers) {
+<ul>
+  @for (member of teamMembers; track member) {
+  <li>
+    <div>
+      <img
+        [src]="member.profilePhoto || 'blank-profile-picture-973460_1280.png'"
+        [alt]="member.EmployeName"
+      />
+      <p>{{ member.EmployeName }}</p>
+    </div>
+    <div class="week">
+      @for (day of daysToDisplay; track $index; let i = $index) {
+
+      <div [class]="member.thisWeekLeaves[i]">
+        {{ i === 0 ? day : day.charAt(0) }}
+      </div>
+      }
+    </div>
+  </li>
+  }
+</ul>
+}@else {<span class="loader"></span>} @if(teamMembers && teamMembers.length ===
+0) {
+<p class="noAbsenceMsg">No absence recorded this week</p>
+}

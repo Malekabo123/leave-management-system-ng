@@ -1,0 +1,23 @@
+<div class="sidebarContainer" [class.collapsed]="!isCollapsed">
+  <div class="sidebar">
+    <div class="name">
+      @if (name) {
+      <p>{{ name }}</p>
+      }
+    </div>
+    <div>
+      <ul>
+        @for (nav of navs; track nav.title) {
+        <li routerLinkActive="active">
+          <a [routerLink]="nav.routerLink" (click)="toggleSidebar(true)">
+            <i class="material-icons">{{ nav.icon }}</i>
+            <p>{{ nav.title }}</p>
+          </a>
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+
+  <div class="sidebar-bg"></div>
+</div>

@@ -1,0 +1,45 @@
+<table>
+  <thead>
+    <tr>
+      @for (tableHeader of tableHeaders; track tableHeader) {
+      <th scope="col">{{ tableHeader }}</th>
+      }
+    </tr>
+  </thead>
+
+  <tbody>
+    @for (employee of dataToDisplay | filter:search ; track $index) {
+    <tr>
+      <!-- display table content except the action column, and pass the header name for small screen size -->
+      @for (item of employee; track $index; let i = $index) { @if (i <
+      employee.length - 2 ) { @if (isDate(item)) {
+      <!-- if the content to display is a date use the date pipe -->
+      <td [attr.data-label]="tableHeaders[i]">
+        {{ item | date }}
+      </td>
+      }
+      <!-- if it's not a date set the classes for email and range to min width -->
+      @if (!isDate(item)) {
+      <td
+        [attr.data-label]="tableHeaders[i]"
+        [class]="item.includes('@') ? 'email' : ''"
+      >
+        {{ item }}
+      </td>
+      } } }
+      <!-- distinguish between leaves and employees table to pass id to button and set its content -->
+      <td [attr.data-label]="tableHeaders[tableHeaders.length - 1]">
+        @if (employee[employee.length - 1] === 'employeeData') {
+        <button (click)="onClick(employee[employee.length - 2])">
+          <i class="material-icons">edit</i><span>Edit</span>
+        </button>
+        }@if (employee[employee.length - 1] === 'employeeLeaves') {
+        <button (click)="onClick(employee[0])">
+          <i class="material-icons">remove_red_eye</i><span>Show All</span>
+        </button>
+        }
+      </td>
+    </tr>
+    }
+  </tbody>
+</table>

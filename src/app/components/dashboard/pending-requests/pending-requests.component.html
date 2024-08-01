@@ -1,0 +1,48 @@
+<ul>
+  @if (emploInfo) { @for (emplo of emploInfo; track emplo.id) {
+  <li>
+    <div>
+      <div class="imageContainer">
+        <img
+          [src]="
+            emplo.personalInformation.image ||
+            'blank-profile-picture-973460_1280.png'
+          "
+          [alt]="emplo.personalInformation.full_Name"
+        />
+      </div>
+
+      <div>
+        <h3>{{ emplo.personalInformation.full_Name }}</h3>
+        @for (leave of emplo.leaveRecords; track leave.id) { @if
+        (+leave.leaveDays === 1) {
+        <p>
+          {{ leave.leaveType | titlecase }} leave on
+          {{ leave.leaveDateFrom.toDate() | date }} ({{ leave.leaveDays }}
+          working day)
+        </p>
+        } @if (+leave.leaveDays !== 1) {
+        <p>
+          {{ leave.leaveType | titlecase }} leave from
+          {{ leave.leaveDateFrom.toDate() | date }} to
+          {{ leave.leaveDateTo.toDate() | date }} ({{ leave.leaveDays }}
+          working days)
+        </p>
+        } }
+      </div>
+    </div>
+
+    <button class="openBtn" (click)="openModal(emplo.id)">
+      <i class="material-icons">open_in_new</i>
+      Open
+    </button>
+  </li>
+  } }@else {
+  <span class="loader"></span>
+  }
+</ul>
+
+@if (emploInfo && emploInfo.length === 0) {
+
+<h2>No Requests Awaiting Your Approval</h2>
+}

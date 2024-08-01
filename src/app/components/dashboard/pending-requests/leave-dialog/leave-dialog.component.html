@@ -1,0 +1,117 @@
+<mat-dialog-content>
+  <div class="infoContainer">
+    <h1>Leave Details</h1>
+    <div class="row">
+      <div><strong>Employee Name:</strong> {{ dataToDisplay.full_name }}</div>
+      <div><strong>Employee Id:</strong> {{ dataToDisplay.employee_ID }}</div>
+    </div>
+    <div class="row">
+      <div>
+        <strong>Leave Date:</strong>
+        @if (dataToDisplay.leaveData.halfDay) {
+        {{ dataToDisplay.leaveData.leaveDateFrom.toDate() | date }} -
+        {{ dataToDisplay.leaveData.AM_PM?.toUpperCase() }}
+        }@else if (+dataToDisplay.leaveData.leaveDays === 1) {
+        {{ dataToDisplay.leaveData.leaveDateFrom.toDate() | date }}
+        }@else{ From
+        {{ dataToDisplay.leaveData.leaveDateFrom.toDate() | date }} to
+        {{ dataToDisplay.leaveData.leaveDateTo.toDate() | date }} ({{
+          dataToDisplay.leaveData.leaveDays
+        }}
+        working days)}
+      </div>
+      <div><strong>Department:</strong> {{ dataToDisplay.department }}</div>
+    </div>
+    <div class="row">
+      <div>
+        <strong>Leave Type:</strong> {{ dataToDisplay.leaveData.leaveType }}
+      </div>
+
+      <div><strong>Employee Gender:</strong> {{ dataToDisplay.gender }}</div>
+    </div>
+    <div class="row">
+      <div class="wholeRow">
+        <strong>Description:</strong> {{ dataToDisplay.leaveData.description }}
+      </div>
+    </div>
+  </div>
+
+  <h1>Past Leaves Details</h1>
+  @if (dataToDisplay.pastLeaveInfo.length === 0) {
+  <h3>No Data For Past Leaves Yet</h3>
+  } @else {
+  <ol>
+    @for (leave of dataToDisplay.pastLeaveInfo; track leave; let i = $index) {
+    <li>
+      <div class="row">
+        <div><strong>Approver:</strong> {{ leave.approver }}</div>
+        <div><strong>Leave Status:</strong> {{ leave.leaveStatus }}</div>
+      </div>
+      <div class="row">
+        <div>
+          <strong>Leave Date:</strong> @if (leave.halfDay) {
+          {{ leave.leaveDateFrom.toDate() | date }} -
+          {{ leave.AM_PM?.toUpperCase() }}
+          }@else if (+leave.leaveDays === 1) {
+          {{ leave.leaveDateFrom.toDate() | date }}
+          }@else{ From
+          {{ leave.leaveDateFrom.toDate() | date }} to
+          {{ leave.leaveDateTo.toDate() | date }} ({{ leave.leaveDays }}
+          working days)}
+        </div>
+        <div><strong>Leave Type:</strong> {{ leave.leaveType }}</div>
+      </div>
+      <div class="row">
+        <div><strong>Leave Description:</strong> {{ leave.description }}</div>
+      </div>
+    </li>
+
+    }
+  </ol>
+  }
+
+  <h1>Take Action</h1>
+</mat-dialog-content>
+
+<form [formGroup]="form" focusInvalidInput>
+  <mat-dialog-actions>
+    <mat-form-field class="wholeRow" appearance="outline">
+      <mat-label>Approval /Rejection Description</mat-label>
+      <textarea
+        matInput
+        cdkTextareaAutosize
+        #autosize="cdkTextareaAutosize"
+        cdkAutosizeMinRows="5"
+        cdkAutosizeMaxRows="10"
+        formControlName="approver_description"
+      ></textarea>
+    </mat-form-field>
+    <div class="actions">
+      <button class="cancelBtn" (click)="onNoClick()">Close</button>
+      <div>
+        <button
+          class="rejectBtn"
+          (click)="
+            onSubmit({
+              answer: false,
+              leaveId: dataToDisplay.leaveData.id
+            })
+          "
+        >
+          Reject
+        </button>
+        <button
+          class="submitBtn"
+          (click)="
+            onSubmit({
+              answer: true,
+              leaveId: dataToDisplay.leaveData.id
+            })
+          "
+        >
+          Approve
+        </button>
+      </div>
+    </div>
+  </mat-dialog-actions>
+</form>

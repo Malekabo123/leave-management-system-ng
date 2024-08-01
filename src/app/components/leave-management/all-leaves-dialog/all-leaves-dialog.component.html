@@ -1,0 +1,92 @@
+<mat-dialog-content>
+  <div class="infoContainer">
+    <h1>Employee Details</h1>
+    <div class="row">
+      <div>
+        <strong>Employee Name:</strong>
+        {{ employeeData.personalInformation.full_Name | titlecase }}
+      </div>
+      <div>
+        <strong>Employee Id:</strong>
+        {{ employeeData.employmentDetails.employee_ID }}
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <strong>Date Of Joining:</strong>
+        {{ employeeData.employmentDetails.date_Of_Joining.toDate() | date }}
+      </div>
+      <div>
+        <strong>End Of Contract:</strong>
+        {{ employeeData.employmentDetails.end_Of_Contract.toDate() | date }}
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <strong>Employment Status:</strong>
+        {{ employeeData.employmentDetails.employment_Status | titlecase }}
+      </div>
+      <div>
+        <strong>Position:</strong>
+        {{ employeeData.professionalInformation.position | titlecase }}
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <strong>Office Location:</strong>
+        {{ employeeData.employmentDetails.office_Location | titlecase }}
+      </div>
+      <div>
+        <strong>Company Email:</strong>
+        {{ employeeData.credentials.company_Email }}
+      </div>
+    </div>
+  </div>
+
+  <h1>Past Leave Records</h1>
+  <ol>
+    @for (leave of employeeData.leaveRecords; track leave; let i = $index) {
+    <li>
+      <div class="row">
+        <div><strong>Approver:</strong> {{ leave.approver | titlecase }}</div>
+        <div>
+          <strong>Leave Status:</strong> {{ leave.leaveStatus | titlecase }}
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <strong>Leave Date:</strong>
+          @if (leave.halfDay) {
+          {{ leave.leaveDateFrom.toDate() | date }} -
+          {{ leave.AM_PM?.toUpperCase() }}
+          }@else if (+leave.leaveDays === 1) {
+          {{ leave.leaveDateFrom.toDate() | date }}
+          }@else { From
+          {{ leave.leaveDateFrom.toDate() | date }} to
+          {{ leave.leaveDateTo.toDate() | date }}}
+        </div>
+        <div>
+          <strong>Leave Type:</strong> {{ leave.leaveType | titlecase }}
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <strong>Employee Description:</strong>
+          {{ leave.description | titlecase }}
+        </div>
+        <div>
+          <strong>Approver Description:</strong>
+          {{ leave.approver_description | titlecase }}
+        </div>
+      </div>
+    </li>
+
+    }
+  </ol>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <div class="actions">
+    <button class="cancelBtn" (click)="onNoClick()">Close</button>
+  </div>
+</mat-dialog-actions>

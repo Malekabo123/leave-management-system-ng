@@ -1,0 +1,131 @@
+<!-- vacation -->
+<div class="leaveContainer">
+  <h2>Vacation Leaves</h2>
+
+  <p>
+    <i class="material-icons">double_arrow</i> You can get 2 vacation leave days
+    every month. Any unused leave days from previous months are added to the
+    current month's total. At the end of the year, the leave balance is reset to
+    0
+  </p>
+  <p>
+    <i class="material-icons">double_arrow</i>This month, you can get
+    {{ getAllowedDays("vacation") }} Vacation leave days
+  </p>
+  <p>
+    <i class="material-icons">double_arrow</i> Since the start of this year, you
+    have taken a total of {{ getTotalDays("vacation") }}
+    Vacation leave days@if (leaveAnalysis['vacation']) {, distributed as
+    follows:}
+  </p>
+
+  @if (leaveAnalysis['vacation']) {
+  <app-stepper [myLeaves]="myLeaves" [leaveType]="leaveAnalysis['vacation']" />
+  }
+</div>
+
+<!-- sick -->
+<div class="leaveContainer">
+  <h2>Sick Leaves</h2>
+
+  <p>
+    <i class="material-icons">double_arrow</i>You can get 5 sick leave days in
+    one year, and you can take them however you want (e.g., 5 at once, 2 then 3,
+    or 1 day at a time). At the end of the year, the leave balance is reset to 0
+  </p>
+  <p>
+    <i class="material-icons">double_arrow</i> {{ getAllowedDays("sick") }} sick
+    leave days are left this year
+  </p>
+  <p>
+    <i class="material-icons">double_arrow</i> Since the start of this year, you
+    have taken a total of {{ getTotalDays("sick") }}
+    Sick leave days@if (leaveAnalysis['sick']) {, distributed as follows:}
+  </p>
+
+  @if (leaveAnalysis['sick']) {
+  <app-stepper [myLeaves]="myLeaves" [leaveType]="leaveAnalysis['sick']" />
+  }
+</div>
+
+<!-- study -->
+<div class="leaveContainer">
+  <h2>Study Leaves</h2>
+
+  <p>
+    <i class="material-icons">double_arrow</i>You can get study leave days as
+    your supervisor approves
+  </p>
+  <p>
+    <i class="material-icons">double_arrow</i> Since the start of this year, you
+    have taken a total of {{ getTotalDays("study") }}
+    Study leave days@if (leaveAnalysis['study']) {, distributed as follows:}
+  </p>
+
+  @if (leaveAnalysis['study']) {
+  <app-stepper [myLeaves]="myLeaves" [leaveType]="leaveAnalysis['study']" />
+  }
+</div>
+
+<!-- paternity -->
+@if (parentalLeave === 'paternity') {
+<div class="leaveContainer">
+  <h2>Paternity Leaves</h2>
+
+  <p>
+    <i class="material-icons">double_arrow</i>You can get 2 weeks of paternity
+    leave per year
+  </p>
+  <p>
+    <i class="material-icons">double_arrow</i> Since the start of this year, you
+    have taken a total of {{ getTotalDays("paternity") }}
+    Paternity leave days@if (leaveAnalysis['paternity']) {, distributed as
+    follows:}
+  </p>
+
+  @if (leaveAnalysis['paternity']) {
+  <app-stepper [myLeaves]="myLeaves" [leaveType]="leaveAnalysis['paternity']" />
+  }
+</div>
+}
+
+<!-- maternity -->
+@if (parentalLeave === 'maternity') {
+<div class="leaveContainer">
+  <h2>Maternity Leaves</h2>
+
+  <p>
+    <i class="material-icons">double_arrow</i>You can get 16 weeks of maternity
+    leave per year
+  </p>
+  <p>
+    <i class="material-icons">double_arrow</i> Since the start of this year, you
+    have taken a total of {{ getTotalDays("maternity") }}
+    Maternity leave days@if (leaveAnalysis['maternity']) {, distributed as
+    follows:}
+  </p>
+
+  @if (leaveAnalysis['maternity']) {
+  <app-stepper [myLeaves]="myLeaves" [leaveType]="leaveAnalysis['maternity']" />
+  }
+</div>
+}
+
+<!-- unpaid -->
+<div class="leaveContainer">
+  <h2>Unpaid Leaves</h2>
+
+  <p>
+    <i class="material-icons">double_arrow</i>You can get unpaid leave days as
+    your supervisor approves
+  </p>
+  <p>
+    <i class="material-icons">double_arrow</i> Since the start of this year, you
+    have taken a total of {{ getTotalDays("unpaid") }}
+    Unpaid leave days@if (leaveAnalysis['unpaid']) {, distributed as follows:}
+  </p>
+
+  @if (leaveAnalysis['unpaid']) {
+  <app-stepper [myLeaves]="myLeaves" [leaveType]="leaveAnalysis['unpaid']" />
+  }
+</div>
