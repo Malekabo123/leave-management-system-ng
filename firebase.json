@@ -1,1 +1,16 @@
-{}
+{
+  "hosting": {
+    "public": "dist/leave-management/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
