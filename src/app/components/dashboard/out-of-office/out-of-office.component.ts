@@ -117,8 +117,6 @@ export class OutOfOfficeComponent {
             }
           }
 
-          console.log(weekLeaves);
-
           if (weekLeaves.length > 0) {
             if (isColleagues) {
               //check if there are other leaves this week, append to the record if found

@@ -52,31 +52,29 @@
         </div>
       </div>
     </app-card>
-    } @if (supervisorEmail) {
+    }
     <app-card>
       <div class="cardBody adjust">
         <div class="floatingHeader hideBig">OUT OF OFFICE</div>
         <h3 class="hideSmall">OUT OF OFFICE</h3>
         <div class="instructions">
-          <div class="blue"></div>
-          <div>Leave Day</div>
+          <div>
+            <div class="blue"></div>
+            <div>Leave Day</div>
+          </div>
+          <div>
+            <div class="grey"></div>
+            <div>Holiday</div>
+          </div>
         </div>
-        <app-out-of-office [supervisorEmail]="supervisorEmail" />
-      </div> </app-card
-    >}@else {
-    <app-card>
-      <div class="cardBody adjust">
-        <div class="floatingHeader hideBig">OUT OF OFFICE</div>
-        <h3 class="hideSmall">OUT OF OFFICE</h3>
-        <div class="instructions">
-          <div class="blue"></div>
-          <div>Leave Day</div>
-        </div>
+        @if (supervisorEmail) {
+        <app-out-of-office [supervisorEmail]="supervisorEmail" />}@else {
         <div class="centeredLoading">
           <span class="loader"></span>
         </div>
+
+        }
       </div>
     </app-card>
-    }
   </div>
 </div>

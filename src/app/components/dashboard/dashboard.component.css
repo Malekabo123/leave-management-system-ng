@@ -28,15 +28,31 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 1rem;
   margin-bottom: 2rem;
+  flex-wrap: wrap;
 }
 
-.blue {
+.instructions > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.blue,
+.grey {
   width: 18px;
   height: 18px;
   border-radius: 50%;
+}
+
+.blue {
   background-color: rgb(87, 185, 250);
+}
+
+.grey {
+  background-color: #ddd;
 }
 
 @media (max-width: 900px) {
@@ -47,6 +63,11 @@ h3 {
 
   .dashboardAnalysis {
     width: 100%;
+  }
+
+  .instructions {
+    margin-top: 3rem;
+    margin-bottom: 0;
   }
 
   #lessMargin {

@@ -216,6 +216,10 @@ td {
 }
 
 @media (max-width: 400px) {
+  .calendarContainer {
+    max-width: 256px;
+  }
+
   .tableContainer {
     width: 100%;
   }
@@ -237,5 +241,15 @@ td {
   .halfDayAm::after {
     width: 23px;
     height: 23px;
+  }
+
+  .halfDayPm::before {
+    width: 40%;
+    right: 10%;
+  }
+
+  .halfDayAm::before {
+    width: 40%;
+    left: 10%;
   }
 }
