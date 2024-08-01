@@ -1,3 +1,5 @@
+@if (isAdmin) {
+<h4>My Team</h4>
 @if (teamMembers) {
 <ul>
   @for (member of teamMembers; track member) {
@@ -20,7 +22,78 @@
   </li>
   }
 </ul>
-}@else {<span class="loader"></span>} @if(teamMembers && teamMembers.length ===
-0) {
-<p class="noAbsenceMsg">No absence recorded this week</p>
-}
+
+<!-- no team absence -->
+@if(teamMembers && teamMembers.length === 0) {
+<p class="noAbsenceMsg">No team absence recorded this week</p>
+} }
+
+<!-- team spinner -->
+@else {<span class="loader"></span>}
+
+<!-- admin and colleagues -->
+<h4>Me & My Colleagues</h4>
+@if (colleagues) {
+<ul>
+  @for (member of colleagues; track member) {
+  <li>
+    <div>
+      <img
+        [src]="member.profilePhoto || 'blank-profile-picture-973460_1280.png'"
+        [alt]="member.EmployeName"
+      />
+      <p>{{ member.EmployeName }}</p>
+    </div>
+    <div class="week">
+      @for (day of daysToDisplay; track $index; let i = $index) {
+
+      <div [class]="member.thisWeekLeaves[i]">
+        {{ i === 0 ? day : day.charAt(0) }}
+      </div>
+      }
+    </div>
+  </li>
+  }
+</ul>
+
+<!-- no colleagues absence -->
+@if(colleagues && colleagues.length === 0) {
+<p class="noAbsenceMsg">No colleagues absence recorded this week</p>
+} }
+
+<!-- colleagues spinner -->
+@else {<span class="loader"></span>} }
+
+<!-- just colleagues -->
+@else {
+<h4>Me & My Colleagues</h4>
+@if (colleagues) {
+<ul>
+  @for (member of colleagues; track member) {
+  <li>
+    <div>
+      <img
+        [src]="member.profilePhoto || 'blank-profile-picture-973460_1280.png'"
+        [alt]="member.EmployeName"
+      />
+      <p>{{ member.EmployeName }}</p>
+    </div>
+    <div class="week">
+      @for (day of daysToDisplay; track $index; let i = $index) {
+
+      <div [class]="member.thisWeekLeaves[i]">
+        {{ i === 0 ? day : day.charAt(0) }}
+      </div>
+      }
+    </div>
+  </li>
+  }
+</ul>
+
+<!-- no colleagues absence -->
+@if(colleagues && colleagues.length === 0) {
+<p class="noAbsenceMsg">No colleagues absence recorded this week</p>
+} }
+
+<!-- colleagues spinner -->
+@else {<span class="loader"></span>} }

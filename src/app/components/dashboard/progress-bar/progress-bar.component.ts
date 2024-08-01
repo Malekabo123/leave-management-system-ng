@@ -7,8 +7,9 @@ import { LeaveRecord } from '../../../models/dashboard.model';
   styleUrl: './progress-bar.component.css',
 })
 export class ProgressBarComponent {
-  @Input() myLeaves!: LeaveRecord[];
+  @Input() allMyLeaves!: LeaveRecord[];
   @Input() date_of_joining!: Date;
+  myLeaves!: LeaveRecord[];
 
   leaveTypes = [
     {
@@ -33,6 +34,10 @@ export class ProgressBarComponent {
     } else {
       monthsFromJoining = new Date().getMonth() + 1;
     }
+
+    this.myLeaves = this.allMyLeaves.filter(
+      (leave) => leave.leaveStatus !== 'rejected'
+    );
 
     //if the employee joined this year start calculating from date of join, else start from 1 Jan this year
     this.leaveTypes.find(
