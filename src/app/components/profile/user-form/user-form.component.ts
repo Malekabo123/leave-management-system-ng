@@ -202,6 +202,7 @@ export class UserFormComponent {
     localStorage.removeItem('theIdOfEmployeeWhoIsLoggedIn');
     localStorage.removeItem('theNameOfEmployeeLoggedIn');
     localStorage.removeItem('yourRoleInThisCompany');
+    localStorage.clear();
     this.router.navigate(['/login']);
   }
 }

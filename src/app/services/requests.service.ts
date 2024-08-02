@@ -23,10 +23,11 @@ export class RequestsService {
   ) {
     const updatedLeaves = employee.leaveRecords.map((record) => {
       if (record.id === updatedData.leaveId) {
+        const name = localStorage.getItem('theNameOfEmployeeLoggedIn');
         return {
           ...record,
           leaveStatus: updatedData.answer ? 'approved' : 'rejected',
-          approver: localStorage.getItem('theNameOfEmployeeLoggedIn'),
+          approver: name,
           approver_description: updatedData.approver_description,
         };
       }
@@ -42,9 +43,10 @@ export class RequestsService {
   }
 
   allLeaveRecords(): Observable<LeaveRecord[]> {
+    const uid = localStorage.getItem('theIdOfEmployeeWhoIsLoggedIn')!;
     return this.firestore
       .collection('employees')
-      .doc<Employee>(localStorage.getItem('theIdOfEmployeeWhoIsLoggedIn')!)
+      .doc<Employee>(uid)
       .valueChanges()
       .pipe(
         map((doc) => doc?.leaveRecords ?? []) // Wrap the document in an array or return an empty array if undefined
@@ -86,6 +88,7 @@ export class RequestsService {
         halfDay: isHalfDay,
       };
     }
+    const uid = localStorage.getItem('theIdOfEmployeeWhoIsLoggedIn')!;
 
     //get all stored leave records to update the field of leaveRecords in firestore
     this.allLeaveRecords()
@@ -95,7 +98,7 @@ export class RequestsService {
 
         this.firestore
           .collection('employees')
-          .doc(localStorage.getItem('theIdOfEmployeeWhoIsLoggedIn')!)
+          .doc(uid)
           .update({ leaveRecords: this.updatedLeaveRecords })
           .then(() => {
             console.log('Leave records updated successfully');
@@ -107,6 +110,7 @@ export class RequestsService {
   }
 
   cancelLeave(leaveId: number) {
+    const uid = localStorage.getItem('theIdOfEmployeeWhoIsLoggedIn')!;
     this.allLeaveRecords()
       .pipe(first())
       .subscribe((data) => {
@@ -114,7 +118,7 @@ export class RequestsService {
 
         this.firestore
           .collection('employees')
-          .doc(localStorage.getItem('theIdOfEmployeeWhoIsLoggedIn')!)
+          .doc(uid)
           .update({ leaveRecords: this.updatedLeaveRecords })
           .then(() => {
             console.log('Leave records updated successfully');

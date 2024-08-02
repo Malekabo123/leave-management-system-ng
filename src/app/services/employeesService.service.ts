@@ -8,12 +8,13 @@ export class EmployeesService {
   private firestore = inject(AngularFirestore);
 
   allEmployees(): Observable<Employee[]> {
+    const email = localStorage.getItem('theEmailYourAdminGivesYou');
     return this.firestore
       .collection<Employee>('employees', (ref) =>
         ref.where(
           'professionalInformation.supervisor_Company_Email',
           '==',
-          localStorage.getItem('theEmailYourAdminGivesYou')
+          email
         )
       )
       .valueChanges();
@@ -54,13 +55,10 @@ export class EmployeesService {
   }
 
   myProfileInfo(): Observable<Employee[]> {
+    const email = localStorage.getItem('theEmailYourAdminGivesYou');
     return this.firestore
       .collection<Employee>('employees', (ref) =>
-        ref.where(
-          'credentials.company_Email',
-          '==',
-          localStorage.getItem('theEmailYourAdminGivesYou')
-        )
+        ref.where('credentials.company_Email', '==', email)
       )
       .valueChanges();
   }

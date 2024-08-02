@@ -21,6 +21,7 @@ export class AuthComponent {
         if (data.length === 0) {
           this.errorMessage = 'Invalid email or password';
         } else {
+          const role = data[0].isAdmin ? 'admin' : 'employee';
           localStorage.setItem(
             'theEmailYourAdminGivesYou',
             data[0].credentials.company_Email
@@ -30,10 +31,7 @@ export class AuthComponent {
             'theNameOfEmployeeLoggedIn',
             data[0].personalInformation.full_Name
           );
-          localStorage.setItem(
-            'yourRoleInThisCompany',
-            data[0].isAdmin ? 'admin' : 'employee'
-          );
+          localStorage.setItem('yourRoleInThisCompany', role);
 
           this.router.navigate(['/layout']);
         }
