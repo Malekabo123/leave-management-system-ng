@@ -27,3 +27,7 @@ Employee password: passbest<br>
 _There are other accounts available for testing, but these are provided for demonstration purposes._
 
 [Link for hosted web app](https://leave-management-a3f46.web.app/)
+
+# Preview
+![alt text](https://drive.google.com/file/d/1evrandOAdxWM4bFo6kf-wucYW254gkm5/view?usp=sharing)
+![alt text]([http://url/to/img.png](https://drive.google.com/file/d/1VED8Y6WX2lX1q-4kiHdxsOqvukjxnzCq/view?usp=sharing))
