@@ -29,5 +29,8 @@ _There are other accounts available for testing, but these are provided for demo
 [Link for hosted web app](https://leave-management-a3f46.web.app/)
 
 # Preview
+## Dashboard
 ![alt text](https://github.com/Malekabo123/leave-management-system-ng/blob/main/public/Screenshot%202024-08-02%20100555.png?raw=true)
+
+## Calendar
 ![alt text](https://github.com/Malekabo123/leave-management-system-ng/blob/main/public/Screenshot%202024-08-02%20100631.png?raw=true)
