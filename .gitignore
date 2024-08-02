@@ -10,7 +10,7 @@
 .github/
 .vscode/
 src/environments
-.editconfig
+.editconfig 
 .firebaserc
 
 # Node
