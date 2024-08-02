@@ -9,6 +9,9 @@
 .firebase/
 .github/
 .vscode/
+src/environments
+.editconfig
+.firebaserc
 
 # Node
 /node_modules
