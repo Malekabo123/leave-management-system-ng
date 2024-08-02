@@ -5,6 +5,10 @@
 /tmp
 /out-tsc
 /bazel-out
+/.angular
+/.firebase
+/.github
+/.vscode
 
 # Node
 /node_modules
